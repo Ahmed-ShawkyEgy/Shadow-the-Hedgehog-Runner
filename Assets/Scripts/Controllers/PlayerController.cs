@@ -31,12 +31,14 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.tag == ("Ground") && isGrounded == false)
         {
             isGrounded = true;
+            rb.constraints |= RigidbodyConstraints.FreezePositionY; 
         }
     }
 
 
     public void jump()
     {
+        rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
         rb.AddForce(new Vector3(0, _jump, 0), ForceMode.VelocityChange);
         isGrounded = false;
     }
