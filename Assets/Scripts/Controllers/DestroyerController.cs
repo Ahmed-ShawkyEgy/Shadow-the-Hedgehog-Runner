@@ -10,7 +10,7 @@ public class DestroyerController : MonoBehaviour
     void Update()
     {
         Vector3 pos = transform.position;
-        pos.z = _camera.position.z - 10f ;
+        pos.z = _camera.position.z;
         transform.position = pos;
     }
 

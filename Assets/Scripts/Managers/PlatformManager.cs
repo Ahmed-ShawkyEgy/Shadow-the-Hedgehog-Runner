@@ -3,7 +3,7 @@
 public class PlatformManager : Singleton<PlatformManager>
 {
     [SerializeField]
-    private GameObject _platform;
+    private Renderer _platform;
     [SerializeField]
     private int _maxAmountOfVisiblePlatforms;
     [SerializeField]
@@ -16,7 +16,7 @@ public class PlatformManager : Singleton<PlatformManager>
     // Start is called before the first frame update
     void Start()
     {
-        _platformLength = _platform.GetComponent<Renderer>().bounds.size.z;
+        _platformLength = _platform.bounds.size.z;
         _spawnZ = 0;
         while (_amountOfVisiblePlatforms < _maxAmountOfVisiblePlatforms)
             SpawnPlatform();
@@ -31,13 +31,17 @@ public class PlatformManager : Singleton<PlatformManager>
 
     public void DestroyPlatform(GameObject platform)
     {
-        Destroy(platform);
+        //Destroy(platform);
+        PlatformPool.Instance.ReturnToPool(platform.GetComponent<Platform>());
         _amountOfVisiblePlatforms--;
     }
 
     public GameObject SpawnPlatform()
     {
-        GameObject g = Instantiate(_platform, Vector3.forward * _spawnZ, Quaternion.identity,_platformHolder);
+        GameObject g = PlatformPool.Instance.GetObject().gameObject;
+        g.SetActive(true);
+        g.transform.position = Vector3.forward * _spawnZ;
+        g.transform.SetParent(_platformHolder);
         _spawnZ += _platformLength;
         _amountOfVisiblePlatforms++;
         return g;
