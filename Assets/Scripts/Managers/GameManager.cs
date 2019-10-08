@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
 
     [SerializeField]
@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
         UpdateTimer();
     }
 
+    public void incrementTimer(int seconds)
+    {
+        timer += seconds;
+    }
+
     private void UpdateDistanceTravelled()
     {
         distanceTravelled += ball.transform.position.z - lastPosition;
@@ -40,4 +45,5 @@ public class GameManager : MonoBehaviour
         timer -= Time.deltaTime;
         timeDisplay.text = timer.ToString("F0");
     }
+
 }

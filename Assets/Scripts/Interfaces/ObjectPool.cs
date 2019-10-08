@@ -16,8 +16,11 @@ public class ObjectPool<T> : Singleton<ObjectPool<T>> where T : Component
 
     public void ReturnToPool(T obj)
     {
-        obj.gameObject.SetActive(false);
-        queue.Enqueue(obj);
+        if(obj.gameObject.activeSelf)
+        {
+            obj.gameObject.SetActive(false);
+            queue.Enqueue(obj);
+        }
     }
 
     private void Add()

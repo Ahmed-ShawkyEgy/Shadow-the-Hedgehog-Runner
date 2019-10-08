@@ -20,4 +20,13 @@ public class Coin : MonoBehaviour
     {
         CoinPool.Instance.ReturnToPool(this);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            GameManager.Instance.incrementTimer(2);
+            returnToPool();
+        }
+    }
 }
