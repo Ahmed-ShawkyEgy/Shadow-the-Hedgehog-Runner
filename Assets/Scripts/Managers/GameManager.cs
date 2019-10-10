@@ -10,13 +10,19 @@ public class GameManager : Singleton<GameManager>
     private TextMeshProUGUI timeDisplay, distanceDisplay;
     [SerializeField]
     private GameObject ball;
+    [SerializeField]
+    private SimpleHealthBar powerBar1 , powerBar2;
+    [SerializeField]
+    private int maxPower;
 
     private float distanceTravelled , lastPosition;
     private float timer;
+    private int currentPower;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentPower = 0;
         distanceTravelled = 0;
         timer = 60;
     }
@@ -26,6 +32,13 @@ public class GameManager : Singleton<GameManager>
     {
         UpdateDistanceTravelled();
         UpdateTimer();
+    }
+
+    public void updatePower(int power)
+    {
+        currentPower += power;
+        powerBar1.UpdateBar(currentPower, maxPower);
+        powerBar2.UpdateBar(currentPower, maxPower);
     }
 
     public void updateTimer(int seconds)

@@ -20,4 +20,13 @@ public class BlueSphere : MonoBehaviour
     {
         BlueSpherePool.Instance.ReturnToPool(this);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            GameManager.Instance.updatePower(1);
+            returnToPool();
+        }
+    }
 }
