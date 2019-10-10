@@ -10,8 +10,6 @@ public class Spawner : Singleton<Spawner>
     private Transform _platformHolder;
     [SerializeField]
     private Transform _dropableHolder;
-    [SerializeField]
-    private GameObject[] _pools;
 
     private float _platformLength, _platformHeight;
     private float _spawnZ;
@@ -48,7 +46,9 @@ public class Spawner : Singleton<Spawner>
                 GameObject g = getRandomDroppable();
                 Vector3 pos = t.position;
                 pos.x = lane;
-                pos.y = _platformHeight/2 + g.GetComponent<Renderer>().bounds.size.y/2;
+                pos.y = g.GetComponent<Collider>().bounds.size.y / 2;
+                //pos.y = _platformHeight/2 + g.GetComponent<Renderer>().bounds.size.y/2;
+                pos.y = _platformHeight / 2 + g.GetComponent<Collider>().bounds.size.y / 2;
                 g.transform.position = pos;
             }
         }

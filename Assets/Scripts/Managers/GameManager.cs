@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private TextMeshProUGUI timeDisplay, distanceDisplay;
     [SerializeField]
-    private GameObject ball;
+    private GameObject player;
     [SerializeField]
     private SimpleHealthBar powerBar1 , powerBar2;
     [SerializeField]
@@ -48,8 +48,8 @@ public class GameManager : Singleton<GameManager>
 
     private void UpdateDistanceTravelled()
     {
-        distanceTravelled += ball.transform.position.z - lastPosition;
-        lastPosition = ball.transform.position.z;
+        distanceTravelled += player.transform.position.z - lastPosition;
+        lastPosition = player.transform.position.z;
         distanceDisplay.text = (distanceTravelled / 10).ToString("F1");
     }
 

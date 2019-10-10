@@ -16,12 +16,11 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private int _activeCamera;
     private Rigidbody rb;
-    private Lanes currentLane , targetLane;
+    private Lanes targetLane;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        currentLane = Lanes.MiddleLane;
         targetLane = Lanes.MiddleLane;
 
         _firstPersonCamera.enabled = false;
@@ -34,11 +33,20 @@ public class Player : MonoBehaviour
         rb.velocity = _normalSpeed;
     }
 
+    private void FixedUpdate()
+    {
+        if (isGrounded)
+        {
+            rb.velocity = _normalSpeed;
+        }
+        Debug.Log(rb.velocity.magnitude);
+    }
 
     private void Update()
     {
         handleControls();
         moveToTargetLane();
+
     }
 
     private void moveToTargetLane()
