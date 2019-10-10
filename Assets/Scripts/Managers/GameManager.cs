@@ -28,7 +28,7 @@ public class GameManager : Singleton<GameManager>
         UpdateTimer();
     }
 
-    public void incrementTimer(int seconds)
+    public void updateTimer(int seconds)
     {
         timer += seconds;
     }

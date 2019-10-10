@@ -20,4 +20,13 @@ public class IronBall : MonoBehaviour
     {
         IronBallPool.Instance.ReturnToPool(this);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            GameManager.Instance.updateTimer(-2);
+            returnToPool();
+        }
+    }
 }

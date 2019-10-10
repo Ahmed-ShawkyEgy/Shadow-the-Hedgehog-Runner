@@ -25,7 +25,7 @@ public class Coin : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            GameManager.Instance.incrementTimer(2);
+            GameManager.Instance.updateTimer(2);
             returnToPool();
         }
     }
