@@ -17,10 +17,13 @@ public class Player : MonoBehaviour
     private int _activeCamera;
     private Rigidbody rb;
     private Lanes targetLane;
+    private Animator animator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+
         targetLane = Lanes.MiddleLane;
 
         _firstPersonCamera.enabled = false;
@@ -111,6 +114,7 @@ public class Player : MonoBehaviour
             isGrounded = true;
             rb.constraints |= RigidbodyConstraints.FreezePositionY;
             rb.velocity = _normalSpeed;
+            //animator.SetTrigger("isFall");
         }
     }
 
@@ -120,5 +124,6 @@ public class Player : MonoBehaviour
         rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
         rb.AddForce(new Vector3(0, _jump, 0), ForceMode.VelocityChange);
         isGrounded = false;
+        animator.SetTrigger("isJump");
     }
 }
