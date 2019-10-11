@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private TextMeshProUGUI timeDisplay, distanceDisplay;
     [SerializeField]
-    private GameObject player;
+    private Player player;
     [SerializeField]
     private SimpleHealthBar powerBar1 , powerBar2;
     [SerializeField]
@@ -41,9 +41,20 @@ public class GameManager : Singleton<GameManager>
 
     public void UpdatePower(int power)
     {
+        
         currentPower += power;
+        currentPower = Mathf.Max(currentPower, maxPower);
         powerBar1.UpdateBar(currentPower, maxPower);
         powerBar2.UpdateBar(currentPower, maxPower);
+
+        if(power >= maxPower)
+        {
+            currentPower = 0;
+            powerBar1.UpdateBar(currentPower, maxPower);
+            powerBar2.UpdateBar(currentPower, maxPower);
+            Debug.Log("Max Power");
+            player.TriggerInvinvible();
+        }
     }
 
     public void UpdateTimer(int seconds)

@@ -13,11 +13,12 @@ public class Player : MonoBehaviour
     private Camera _firstPersonCamera, _thirdPersonCamera;
 
     private Vector3 _normalSpeed, _highSpeed;
-    private bool isGrounded;
+    private bool isGrounded, isInvinvible;
     private int _activeCamera;
     private Rigidbody rb;
     private Lanes targetLane;
     private Animator animator;
+    private IEnumerator invincibleCoRoutine;
 
     void Start()
     {
@@ -40,7 +41,7 @@ public class Player : MonoBehaviour
     {
         if (isGrounded)
         {
-            rb.velocity = _normalSpeed;
+            rb.velocity = (isInvinvible)? _highSpeed : _normalSpeed;
         }
         Debug.Log(rb.velocity.magnitude);
     }
@@ -106,6 +107,30 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TriggerInvinvible()
+    {
+        if (invincibleCoRoutine == null)
+        {
+            isInvinvible = true;
+            animator.SetTrigger("isInvincible");
+            invincibleCoRoutine = stopInvincible();
+            StartCoroutine(invincibleCoRoutine);
+        }
+        else
+        {
+            StopCoroutine(invincibleCoRoutine);
+            invincibleCoRoutine = stopInvincible();
+            StartCoroutine(invincibleCoRoutine);
+        }
+    }
+
+    private IEnumerator stopInvincible()
+    {
+        yield return new WaitForSeconds(3);
+        animator.SetTrigger("stopInvinvible");
+        isInvinvible = false;
+        invincibleCoRoutine = null;
+    }
 
     private void OnCollisionEnter(Collision col)
     {
@@ -125,5 +150,10 @@ public class Player : MonoBehaviour
         rb.AddForce(new Vector3(0, _jump, 0), ForceMode.VelocityChange);
         isGrounded = false;
         animator.SetTrigger("isJump");
+    }
+
+    public bool isInvincible()
+    {
+        return isInvinvible;
     }
 }
