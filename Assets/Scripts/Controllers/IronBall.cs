@@ -25,7 +25,7 @@ public class IronBall : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GameManager.Instance.UpdateTimer(-2);
+            GameManager.Instance.UpdateTimer(-10);
             returnToPool();
         }
     }

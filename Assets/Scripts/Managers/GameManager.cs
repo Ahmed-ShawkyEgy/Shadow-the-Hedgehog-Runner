@@ -43,16 +43,14 @@ public class GameManager : Singleton<GameManager>
     {
         
         currentPower += power;
-        currentPower = Mathf.Max(currentPower, maxPower);
+        currentPower = Mathf.Min(currentPower, maxPower);
         powerBar1.UpdateBar(currentPower, maxPower);
         powerBar2.UpdateBar(currentPower, maxPower);
-
-        if(power >= maxPower)
+        if (currentPower >= maxPower)
         {
             currentPower = 0;
             powerBar1.UpdateBar(currentPower, maxPower);
             powerBar2.UpdateBar(currentPower, maxPower);
-            Debug.Log("Max Power");
             player.TriggerInvinvible();
         }
     }
