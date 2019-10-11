@@ -55,7 +55,8 @@ public class MenueManager : Singleton<MenueManager>
 
     public void MainMenue()
     {
-
+        Resume();
+        SceneManager.LoadScene("Start Menue");
     }
 
     public bool isGamePaused()
