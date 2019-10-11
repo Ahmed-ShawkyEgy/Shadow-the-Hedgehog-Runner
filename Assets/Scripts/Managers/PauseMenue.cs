@@ -1,0 +1,51 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PauseMenue : Singleton<PauseMenue>
+{
+
+    [SerializeField]
+    private GameObject pauseMenueUI;
+
+    private bool isPaused;
+
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(isPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
+        }
+    }
+
+    public void Resume()
+    {
+        isPaused = false;
+        pauseMenueUI.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void Pause()
+    {
+        pauseMenueUI.SetActive(true);
+        Time.timeScale = 0f;
+        isPaused = true;
+    }
+
+    public void Retry()
+    {
+
+    }
+
+    public bool isGamePaused()
+    {
+        return isPaused;
+    }
+}
