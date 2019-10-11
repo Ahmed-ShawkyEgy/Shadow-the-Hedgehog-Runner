@@ -25,7 +25,7 @@ public class BlueSphere : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            GameManager.Instance.updatePower(1);
+            GameManager.Instance.UpdatePower(1);
             returnToPool();
         }
     }

@@ -34,14 +34,19 @@ public class GameManager : Singleton<GameManager>
         UpdateTimer();
     }
 
-    public void updatePower(int power)
+    public void EndGame()
+    {
+        MenueManager.Instance.LaunchGameOverMenue();
+    }
+
+    public void UpdatePower(int power)
     {
         currentPower += power;
         powerBar1.UpdateBar(currentPower, maxPower);
         powerBar2.UpdateBar(currentPower, maxPower);
     }
 
-    public void updateTimer(int seconds)
+    public void UpdateTimer(int seconds)
     {
         timer += seconds;
     }

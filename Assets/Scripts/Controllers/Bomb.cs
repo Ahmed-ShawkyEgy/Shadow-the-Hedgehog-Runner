@@ -18,4 +18,13 @@ public class Bomb : MonoBehaviour
     {
         BombPool.Instance.ReturnToPool(this);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            returnToPool();
+            GameManager.Instance.EndGame();
+        }
+    }
 }

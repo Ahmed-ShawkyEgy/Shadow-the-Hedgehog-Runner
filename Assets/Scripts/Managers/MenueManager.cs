@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenue : Singleton<PauseMenue>
+public class MenueManager : Singleton<MenueManager>
 {
 
     [SerializeField]
-    private GameObject pauseMenueUI;
+    private GameObject pauseMenueUI, gameOverMenue;
 
-    private bool isPaused;
+    private bool isPaused , isGameOver;
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(!isGameOver && Input.GetKeyDown(KeyCode.Escape))
         {
             if(isPaused)
             {
@@ -24,6 +24,13 @@ public class PauseMenue : Singleton<PauseMenue>
                 Pause();
             }
         }
+    }
+
+    public void LaunchGameOverMenue()
+    {
+        gameOverMenue.SetActive(true);
+        Time.timeScale = 0f;
+        isGameOver = true;
     }
 
     public void Resume()
@@ -44,6 +51,11 @@ public class PauseMenue : Singleton<PauseMenue>
     {
         Resume();
         SceneManager.LoadScene("GamePlay");
+    }
+
+    public void MainMenue()
+    {
+
     }
 
     public bool isGamePaused()
