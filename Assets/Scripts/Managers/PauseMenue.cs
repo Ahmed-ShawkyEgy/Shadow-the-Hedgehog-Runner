@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenue : Singleton<PauseMenue>
 {
@@ -41,7 +42,8 @@ public class PauseMenue : Singleton<PauseMenue>
 
     public void Retry()
     {
-
+        Resume();
+        SceneManager.LoadScene("GamePlay");
     }
 
     public bool isGamePaused()
