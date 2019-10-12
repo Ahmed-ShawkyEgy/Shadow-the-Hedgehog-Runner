@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed,
                   _horizontalSpeed,
-                  _jump;
+                  _jump,
+                  _gravitationalModifier  ;
 
     [SerializeField]
     private Camera _firstPersonCamera, _thirdPersonCamera;
@@ -35,15 +36,22 @@ public class Player : MonoBehaviour
         _highSpeed = new Vector3(0, 0, _speed * 2);
 
         rb.velocity = _normalSpeed;
+        
     }
 
     private void FixedUpdate()
     {
         if (isGrounded)
         {
-            rb.velocity = (isInvinvible)? _highSpeed : _normalSpeed;
+            rb.velocity = (isInvinvible) ? _highSpeed : _normalSpeed;
         }
-        Debug.Log(rb.velocity.magnitude);
+        else
+        {
+            Vector3 velocity = rb.velocity;
+            velocity.y -= _gravitationalModifier * Time.deltaTime;
+            rb.velocity = velocity;
+        }
+        Debug.Log(rb.velocity);
     }
 
     private void Update()

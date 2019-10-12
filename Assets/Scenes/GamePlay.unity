@@ -2853,6 +2853,16 @@ PrefabInstance:
       propertyPath: _speed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 5469404214401801046, guid: cca003d0237ed2a4699d0aa1222ab352,
+        type: 3}
+      propertyPath: _gravitationalModifier
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469404214401801046, guid: cca003d0237ed2a4699d0aa1222ab352,
+        type: 3}
+      propertyPath: _jump
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3617596250422503500, guid: cca003d0237ed2a4699d0aa1222ab352,
         type: 3}
       propertyPath: m_Controller
