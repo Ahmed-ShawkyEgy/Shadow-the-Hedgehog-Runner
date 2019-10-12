@@ -149,7 +149,6 @@ public class Player : MonoBehaviour
             rb.constraints |= RigidbodyConstraints.FreezePositionY;
             rb.velocity = _normalSpeed;
             transform.Translate(0, 0.1f, 0);
-            //animator.SetTrigger("isFall");
         }
     }
 

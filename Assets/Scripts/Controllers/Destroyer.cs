@@ -23,7 +23,6 @@ public class Destroyer : MonoBehaviour
         }
         else if(other.gameObject.tag == "Coin")
         {
-            Debug.Log("Coin detected");
             other.gameObject.GetComponent<Coin>().returnToPool();
         }
         else if(other.gameObject.tag == "Blue Sphere")

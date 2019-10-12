@@ -20,6 +20,8 @@ public class MainMenueManager : Singleton<MainMenueManager>
 
     public void StartGame()
     {
+        AudioManager.Instance.StopAll();
+        AudioManager.Instance.Play("GamePlay");
         SceneManager.LoadScene("GamePlay");
     }
 
@@ -33,6 +35,13 @@ public class MainMenueManager : Singleton<MainMenueManager>
     {
         disableAllMenues();
         optionsMenue.SetActive(true);
+
+        turnSoundOff.SetActive(false);
+        turnSoundOn.SetActive(false);
+        if (AudioManager.Instance.isSoundEnabled())
+            turnSoundOff.SetActive(true);
+        else
+            turnSoundOn.SetActive(true);
     }
 
     public void DisplayCreditsMenue()
@@ -51,12 +60,15 @@ public class MainMenueManager : Singleton<MainMenueManager>
     {
         turnSoundOn.SetActive(false);
         turnSoundOff.SetActive(true);
+        AudioManager.Instance.setSoundEnabled(true);
+        AudioManager.Instance.Play("MainMenue");
     }
 
     public void TurnSoundOff()
     {
         turnSoundOn.SetActive(true);
         turnSoundOff.SetActive(false);
+        AudioManager.Instance.setSoundEnabled(false);
     }
 
     public void Quit()

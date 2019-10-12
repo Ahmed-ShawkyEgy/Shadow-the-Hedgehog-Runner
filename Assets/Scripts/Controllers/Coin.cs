@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -18,7 +12,6 @@ public class Coin : MonoBehaviour
 
     public void returnToPool()
     {
-        Debug.Log("Coin returned");
         CoinPool.Instance.ReturnToPool(this);
     }
 
