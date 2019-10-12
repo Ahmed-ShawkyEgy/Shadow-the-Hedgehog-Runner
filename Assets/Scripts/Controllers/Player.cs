@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private Camera _firstPersonCamera, _thirdPersonCamera;
 
     private Vector3 _normalSpeed, _highSpeed;
-    private bool isGrounded, isInvinvible;
+    private bool _isGrounded, _isInvinvible;
     private int _activeCamera;
     private Rigidbody rb;
     private Lanes targetLane;
@@ -41,9 +41,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isGrounded)
+        if (_isGrounded)
         {
-            rb.velocity = (isInvinvible) ? _highSpeed : _normalSpeed;
+            //rb.velocity = (isInvinvible) ? _highSpeed : _normalSpeed;
         }
         else
         {
@@ -51,11 +51,12 @@ public class Player : MonoBehaviour
             velocity.y -= _gravitationalModifier * Time.deltaTime;
             rb.velocity = velocity;
         }
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
     }
 
     private void Update()
     {
+        transform.Translate(Vector3.forward * ((_isInvinvible) ? _speed*2:_speed) * Time.deltaTime);
         handleControls();
         moveToTargetLane();
 
@@ -81,7 +82,7 @@ public class Player : MonoBehaviour
 
     private void handleControls()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
         {
             jump();
         }
@@ -119,7 +120,7 @@ public class Player : MonoBehaviour
     {
         if (invincibleCoRoutine == null)
         {
-            isInvinvible = true;
+            _isInvinvible = true;
             animator.SetTrigger("isInvincible");
             invincibleCoRoutine = stopInvincible();
             StartCoroutine(invincibleCoRoutine);
@@ -136,17 +137,18 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         animator.SetTrigger("stopInvinvible");
-        isInvinvible = false;
+        _isInvinvible = false;
         invincibleCoRoutine = null;
     }
 
     private void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == ("Ground") && isGrounded == false)
+        if (col.gameObject.tag == ("Ground") && _isGrounded == false)
         {
-            isGrounded = true;
+            _isGrounded = true;
             rb.constraints |= RigidbodyConstraints.FreezePositionY;
             rb.velocity = _normalSpeed;
+            transform.Translate(0, 0.1f, 0);
             //animator.SetTrigger("isFall");
         }
     }
@@ -155,13 +157,13 @@ public class Player : MonoBehaviour
     public void jump()
     {
         rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
-        rb.AddForce(new Vector3(0, _jump, 0), ForceMode.VelocityChange);
-        isGrounded = false;
+        rb.AddForce(Vector3.up * _jump, ForceMode.VelocityChange);
+        _isGrounded = false;
         animator.SetTrigger("isJump");
     }
 
     public bool isInvincible()
     {
-        return isInvinvible;
+        return _isInvinvible;
     }
 }

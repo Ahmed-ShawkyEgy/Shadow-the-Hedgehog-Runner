@@ -18,6 +18,7 @@ public class Coin : MonoBehaviour
 
     public void returnToPool()
     {
+        Debug.Log("Coin returned");
         CoinPool.Instance.ReturnToPool(this);
     }
 
