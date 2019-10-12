@@ -59,6 +59,11 @@ public class MenueManager : Singleton<MenueManager>
         SceneManager.LoadScene("Start Menue");
     }
 
+    public void PlayClick()
+    {
+        AudioManager.Instance.Play("Click");
+    }
+
     public bool isGamePaused()
     {
         return isPaused;

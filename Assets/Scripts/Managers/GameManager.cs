@@ -51,7 +51,7 @@ public class GameManager : Singleton<GameManager>
             currentPower = 0;
             powerBar1.UpdateBar(currentPower, maxPower);
             powerBar2.UpdateBar(currentPower, maxPower);
-            player.TriggerInvinvible();
+            player.TriggerInvincible();
         }
     }
 

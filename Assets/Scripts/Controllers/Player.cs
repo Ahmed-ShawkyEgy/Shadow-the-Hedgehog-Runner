@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private Camera _firstPersonCamera, _thirdPersonCamera;
 
     private Vector3 _normalSpeed, _highSpeed;
-    private bool _isGrounded, _isInvinvible;
+    private bool _isGrounded, _isInvincible;
     private int _activeCamera;
     private Rigidbody rb;
     private Lanes targetLane;
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.forward * ((_isInvinvible) ? _speed*2:_speed) * Time.deltaTime);
+        transform.Translate(Vector3.forward * ((_isInvincible) ? _speed*2:_speed) * Time.deltaTime);
         handleControls();
         moveToTargetLane();
 
@@ -116,12 +116,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void TriggerInvinvible()
+    public void TriggerInvincible()
     {
         if (invincibleCoRoutine == null)
         {
-            _isInvinvible = true;
-            animator.SetTrigger("isInvincible");
+            _isInvincible = true;
+            animator.SetBool("isInvincible", true);
+            animator.SetTrigger("beInv");
             invincibleCoRoutine = stopInvincible();
             StartCoroutine(invincibleCoRoutine);
         }
@@ -136,9 +137,11 @@ public class Player : MonoBehaviour
     private IEnumerator stopInvincible()
     {
         yield return new WaitForSeconds(3);
-        animator.SetTrigger("stopInvinvible");
-        _isInvinvible = false;
+        _isInvincible = false;
         invincibleCoRoutine = null;
+        Debug.Log("Stop Inv");
+        animator.SetBool("isInvincible", false);
+        animator.SetTrigger("beNormal");
     }
 
     private void OnCollisionEnter(Collision col)
@@ -149,6 +152,9 @@ public class Player : MonoBehaviour
             rb.constraints |= RigidbodyConstraints.FreezePositionY;
             rb.velocity = _normalSpeed;
             transform.Translate(0, 0.1f, 0);
+
+            animator.SetTrigger("fall");
+            
         }
     }
 
@@ -158,11 +164,11 @@ public class Player : MonoBehaviour
         rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
         rb.AddForce(Vector3.up * _jump, ForceMode.VelocityChange);
         _isGrounded = false;
-        animator.SetTrigger("isJump");
+        animator.SetTrigger("jump");
     }
 
     public bool isInvincible()
     {
-        return _isInvinvible;
+        return _isInvincible;
     }
 }
