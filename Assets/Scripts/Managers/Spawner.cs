@@ -23,8 +23,8 @@ public class Spawner : Singleton<Spawner>
         _platformHeight = _platform.bounds.size.y;
         _spawnZ = 0;
         
-        while (_amountOfVisiblePlatforms < _maxAmountOfVisiblePlatforms)
-            SpawnPlatform();
+        //while (_amountOfVisiblePlatforms < _maxAmountOfVisiblePlatforms)
+        //    SpawnPlatform();
     }
 
     // Update is called once per frame
@@ -41,14 +41,36 @@ public class Spawner : Singleton<Spawner>
     {
         foreach(int lane in lanes)
         {
-            if(Random.Range(0,100) < 25)
+            //if(Random.Range(0,100) < 25)
+            //{
+            //    GameObject g = getRandomDroppable();
+            //    Vector3 pos = t.position;
+            //    pos.x = lane;
+            //    pos.y = g.GetComponent<Collider>().bounds.size.y / 2;
+            //    //pos.y = _platformHeight/2 + g.GetComponent<Renderer>().bounds.size.y/2;
+            //    pos.y = _platformHeight / 2 + g.GetComponent<Collider>().bounds.size.y / 2;
+            //    g.transform.position = pos;
+            //}
+
+            if (Random.Range(0, 100) < 25)
             {
                 GameObject g = getRandomDroppable();
                 Vector3 pos = t.position;
                 pos.x = lane;
                 pos.y = g.GetComponent<Collider>().bounds.size.y / 2;
-                //pos.y = _platformHeight/2 + g.GetComponent<Renderer>().bounds.size.y/2;
-                pos.y = _platformHeight / 2 + g.GetComponent<Collider>().bounds.size.y / 2;
+                pos.z -= _platformLength/4;
+                pos.y = 0.1f + _platformHeight / 2 + g.GetComponent<Collider>().bounds.size.y / 2;
+                g.transform.position = pos;
+            }
+
+            if (Random.Range(0, 100) < 25)
+            {
+                GameObject g = getRandomDroppable();
+                Vector3 pos = t.position;
+                pos.x = lane;
+                pos.y = g.GetComponent<Collider>().bounds.size.y / 2;
+                pos.z += _platformLength / 4;
+                pos.y = 0.1f + _platformHeight / 2 + g.GetComponent<Collider>().bounds.size.y / 2;
                 g.transform.position = pos;
             }
         }

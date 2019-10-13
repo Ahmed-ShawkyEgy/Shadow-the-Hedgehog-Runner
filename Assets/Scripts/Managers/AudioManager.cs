@@ -13,17 +13,20 @@ public class AudioManager : PersistentSingleton<AudioManager>
     {
         base.Awake();
         _isSoundEnabled = true;
-        foreach (Sound s in sounds)
+        if(sounds != null)
         {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
+            foreach (Sound s in sounds)
+            {
+                s.source = gameObject.AddComponent<AudioSource>();
+                s.source.clip = s.clip;
 
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
-        }
+                s.source.volume = s.volume;
+                s.source.pitch = s.pitch;
+                s.source.loop = s.loop;
+            }
         
-        Play("MainMenue");
+            Play("MainMenue");
+        }
     }
 
     public void Play(string soundName)
