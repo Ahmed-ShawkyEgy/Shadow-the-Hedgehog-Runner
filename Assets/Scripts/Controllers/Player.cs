@@ -136,12 +136,14 @@ public class Player : MonoBehaviour
 
     private IEnumerator stopInvincible()
     {
+        AudioManager.Instance.Play("PowerUp");
         yield return new WaitForSeconds(3);
         _isInvincible = false;
         invincibleCoRoutine = null;
         Debug.Log("Stop Inv");
         animator.SetBool("isInvincible", false);
         animator.SetTrigger("beNormal");
+        AudioManager.Instance.Stop("PowerUp");
     }
 
     private void OnCollisionEnter(Collision col)
@@ -165,6 +167,7 @@ public class Player : MonoBehaviour
         rb.AddForce(Vector3.up * _jump, ForceMode.VelocityChange);
         _isGrounded = false;
         animator.SetTrigger("jump");
+        AudioManager.Instance.Play("Jump");
     }
 
     public bool isInvincible()

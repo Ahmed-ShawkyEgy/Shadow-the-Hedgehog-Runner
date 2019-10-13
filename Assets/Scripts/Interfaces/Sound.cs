@@ -21,4 +21,9 @@ public class Sound
     {
         source.Play();
     }
+
+    public void Stop()
+    {
+        source.Stop();
+    }
 }

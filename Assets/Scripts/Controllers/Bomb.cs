@@ -24,8 +24,9 @@ public class Bomb : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             returnToPool();
+            AudioManager.Instance.Play("Explosion");
             //if(!other.gameObject.GetComponent<Player>().isInvincible())
-                //GameManager.Instance.EndGame();
+            //GameManager.Instance.EndGame();
         }
     }
 }

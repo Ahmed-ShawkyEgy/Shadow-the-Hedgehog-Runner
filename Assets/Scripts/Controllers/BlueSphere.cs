@@ -26,6 +26,7 @@ public class BlueSphere : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             GameManager.Instance.UpdatePower(1);
+            AudioManager.Instance.Play("PowerUpPickUp");
             returnToPool();
         }
     }

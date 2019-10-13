@@ -40,6 +40,17 @@ public class AudioManager : PersistentSingleton<AudioManager>
         }
     }
 
+    public void Stop(string soundName)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == soundName);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound " + soundName + " not found!");
+            return;
+        }
+        s.Stop();
+    }
+
     public void StopAll()
     {
         foreach (Sound s in sounds)

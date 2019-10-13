@@ -1186,6 +1186,42 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: b577e20e83106104aba27386758fb961, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: CoinCollect
+    clip: {fileID: 8300000, guid: 3eae5899daa8afb40ac0b4f6c1bbab1e, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PowerUpPickUp
+    clip: {fileID: 8300000, guid: db87d1662b7a20c409bf8dcc706107bb, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Buzzer
+    clip: {fileID: 8300000, guid: 90acb9c14411b3a4fa6aaa2c2e57d1c2, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: b6bb0ee812dccac41b6a4acd53bdaaec, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PowerUp
+    clip: {fileID: 8300000, guid: 3685efc3615cca74eb80881782ec525a, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1332036643
 Transform:
   m_ObjectHideFlags: 0

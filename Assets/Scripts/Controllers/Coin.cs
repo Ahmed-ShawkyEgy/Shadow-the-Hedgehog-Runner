@@ -20,6 +20,7 @@ public class Coin : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             GameManager.Instance.UpdateTimer(10);
+            AudioManager.Instance.Play("CoinCollect");
             returnToPool();
         }
     }
