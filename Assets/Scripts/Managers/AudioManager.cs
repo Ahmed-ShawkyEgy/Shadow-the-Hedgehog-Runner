@@ -25,7 +25,6 @@ public class AudioManager : PersistentSingleton<AudioManager>
                 s.source.loop = s.loop;
             }
         
-            Play("MainMenue");
         }
     }
 
@@ -33,6 +32,11 @@ public class AudioManager : PersistentSingleton<AudioManager>
     {
         if (_isSoundEnabled)
         {
+            if(sounds == null)
+            {
+                Debug.LogWarning("Audio aray not found!");
+                return;
+            }
             Sound s = Array.Find(sounds, sound => sound.name == soundName);
             if(s== null)
             {

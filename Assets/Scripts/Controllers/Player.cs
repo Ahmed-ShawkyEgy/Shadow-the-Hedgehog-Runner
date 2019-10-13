@@ -140,7 +140,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(3);
         _isInvincible = false;
         invincibleCoRoutine = null;
-        Debug.Log("Stop Inv");
         animator.SetBool("isInvincible", false);
         animator.SetTrigger("beNormal");
         AudioManager.Instance.Stop("PowerUp");

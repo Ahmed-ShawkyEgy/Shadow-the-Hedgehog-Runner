@@ -23,8 +23,8 @@ public class Spawner : Singleton<Spawner>
         _platformHeight = _platform.bounds.size.y;
         _spawnZ = 0;
         
-        //while (_amountOfVisiblePlatforms < _maxAmountOfVisiblePlatforms)
-        //    SpawnPlatform();
+        for(int i = 0; i < 3;i++)
+            SpawnPlatform();
     }
 
     // Update is called once per frame
@@ -52,25 +52,27 @@ public class Spawner : Singleton<Spawner>
             //    g.transform.position = pos;
             //}
 
-            if (Random.Range(0, 100) < 25)
+            if (Random.Range(0, 100) < 50)
             {
                 GameObject g = getRandomDroppable();
                 Vector3 pos = t.position;
                 pos.x = lane;
-                pos.y = g.GetComponent<Collider>().bounds.size.y / 2;
+                //pos.y = g.GetComponent<Collider>().bounds.size.y / 2;
                 pos.z -= _platformLength/4;
                 pos.y = 0.1f + _platformHeight / 2 + g.GetComponent<Collider>().bounds.size.y / 2;
+                //pos.y += 1;
                 g.transform.position = pos;
             }
 
-            if (Random.Range(0, 100) < 25)
+            if (Random.Range(0, 100) < 50)
             {
                 GameObject g = getRandomDroppable();
                 Vector3 pos = t.position;
                 pos.x = lane;
-                pos.y = g.GetComponent<Collider>().bounds.size.y / 2;
+                //pos.y = g.GetComponent<Collider>().bounds.size.y / 2;
                 pos.z += _platformLength / 4;
                 pos.y = 0.1f + _platformHeight / 2 + g.GetComponent<Collider>().bounds.size.y / 2;
+                //pos.y += 1;
                 g.transform.position = pos;
             }
         }
@@ -80,21 +82,21 @@ public class Spawner : Singleton<Spawner>
     {
         float r = Random.Range(0, 100);
         GameObject g;
-        if (r < 25)
-        {
-            g = BlueSpherePool.Instance.GetObject().gameObject;
-        }
-        else if (r < 50)
+        if (r < 40) // 40% for bombs
         {
             g = BombPool.Instance.GetObject().gameObject;
         }
-        else if (r < 75)
-        {
-            g = CoinPool.Instance.GetObject().gameObject;
-        }
-        else
+        else if (r < 80) // 40% for ironBalls
         {
             g = IronBallPool.Instance.GetObject().gameObject;
+        }
+        else if (r < 95) // 15% for blueSpheres 
+        {
+            g = BlueSpherePool.Instance.GetObject().gameObject;
+        }
+        else // 5% for Coins
+        {
+            g = CoinPool.Instance.GetObject().gameObject;
         }
         g.SetActive(true);
         g.transform.SetParent(_dropableHolder);

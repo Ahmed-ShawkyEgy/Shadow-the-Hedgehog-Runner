@@ -16,6 +16,9 @@ public class MainMenueManager : Singleton<MainMenueManager>
     void Start()
     {
         DisplayMainMenue();
+        AudioManager.Instance.StopAll();
+        AudioManager.Instance.Play("MainMenue");
+
     }
 
     public void StartGame()
