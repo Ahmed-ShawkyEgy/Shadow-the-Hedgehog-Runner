@@ -86,15 +86,15 @@ public class Spawner : Singleton<Spawner>
         {
             g = BombPool.Instance.GetObject().gameObject;
         }
-        else if (r < 80) // 40% for ironBalls
+        else if (r < 85) // 45% for ironBalls
         {
             g = IronBallPool.Instance.GetObject().gameObject;
         }
-        else if (r < 95) // 15% for blueSpheres 
+        else if (r < 98) // 13% for blueSpheres 
         {
             g = BlueSpherePool.Instance.GetObject().gameObject;
         }
-        else // 5% for Coins
+        else // 2% for Coins
         {
             g = CoinPool.Instance.GetObject().gameObject;
         }

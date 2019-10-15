@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
         currentPower = 0;
         distanceTravelled = 0;
         timer = 60;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -32,6 +33,8 @@ public class GameManager : Singleton<GameManager>
     {
         UpdateDistanceTravelled();
         UpdateTimer();
+        if (timer <= 0)
+            EndGame();
     }
 
     public void EndGame()
@@ -70,6 +73,7 @@ public class GameManager : Singleton<GameManager>
     private void UpdateTimer()
     {
         timer -= Time.deltaTime;
+        timer = Mathf.Max(timer, 0);
         timeDisplay.text = timer.ToString("F0");
     }
 

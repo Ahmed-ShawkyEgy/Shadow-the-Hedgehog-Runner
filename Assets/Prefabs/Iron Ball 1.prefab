@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 3935197254988530885}
   - component: {fileID: 3935197254988530884}
   - component: {fileID: 8296172668226861444}
+  - component: {fileID: 2469583748500939505}
   m_Layer: 0
   m_Name: Iron Ball 1
   m_TagString: Untagged
@@ -177,3 +178,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2469583748500939505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5025256440858697162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c867b575080ed949aa263130e4f6ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 3206938072024403506, guid: 499752bb6a57ca44682f8514403d8dd3,
+    type: 3}

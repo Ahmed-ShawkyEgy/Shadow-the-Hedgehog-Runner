@@ -50,6 +50,7 @@ public class MenueManager : Singleton<MenueManager>
     public void Retry()
     {
         Resume();
+        Debug.Log(Time.timeScale);
         SceneManager.LoadScene("GamePlay");
     }
 

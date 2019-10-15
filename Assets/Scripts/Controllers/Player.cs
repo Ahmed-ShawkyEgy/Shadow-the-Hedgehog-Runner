@@ -13,13 +13,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Camera _firstPersonCamera, _thirdPersonCamera;
 
-    private Vector3 _normalSpeed, _highSpeed;
+    [SerializeField]
+    private GameObject _particleEffect;
+
+    private Vector3 _normalSpeed;
     private bool _isGrounded, _isInvincible;
     private int _activeCamera;
     private Rigidbody rb;
     private Lanes targetLane;
     private Animator animator;
     private IEnumerator invincibleCoRoutine;
+    private ParticleSystem speedEffect;
 
     void Start()
     {
@@ -33,10 +37,9 @@ public class Player : MonoBehaviour
         _activeCamera = 0;
 
         _normalSpeed = new Vector3(0, 0, _speed);
-        _highSpeed = new Vector3(0, 0, _speed * 2);
 
         rb.velocity = _normalSpeed;
-        
+        speedEffect = _particleEffect.GetComponent<ParticleSystem>();
     }
 
     private void FixedUpdate()
@@ -118,6 +121,8 @@ public class Player : MonoBehaviour
 
     public void TriggerInvincible()
     {
+        speedEffect.Stop();
+        speedEffect.Play();
         if (invincibleCoRoutine == null)
         {
             _isInvincible = true;
@@ -142,6 +147,7 @@ public class Player : MonoBehaviour
         invincibleCoRoutine = null;
         animator.SetBool("isInvincible", false);
         animator.SetTrigger("beNormal");
+        speedEffect.Stop();
         AudioManager.Instance.Stop("PowerUp");
     }
 

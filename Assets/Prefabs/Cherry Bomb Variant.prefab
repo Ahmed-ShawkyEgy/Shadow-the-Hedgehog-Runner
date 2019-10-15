@@ -60,6 +60,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5effd7360930843a3ca32afdd4afc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7380951738824837400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6476756031739174385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c867b575080ed949aa263130e4f6ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 8284764271263181810, guid: 7e2bfb77159b4604bb4e5e1d1a9ded7f,
+    type: 3}
 --- !u!1001 &3081555462443877624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,12 +84,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: bb2ad2445f61fbf4291270f9ad33fbb7,
         type: 3}
       propertyPath: m_Name
-      value: Cherry Bomb
-      objectReference: {fileID: 0}
-    - target: {fileID: -5975033157549033438, guid: bb2ad2445f61fbf4291270f9ad33fbb7,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
+      value: Cherry Bomb Variant
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: bb2ad2445f61fbf4291270f9ad33fbb7,
         type: 3}
@@ -146,6 +155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5975033157549033438, guid: bb2ad2445f61fbf4291270f9ad33fbb7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb2ad2445f61fbf4291270f9ad33fbb7, type: 3}

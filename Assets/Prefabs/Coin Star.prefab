@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 1326178868924346086}
   - component: {fileID: 1326178868924346088}
   - component: {fileID: 6297040858531830659}
+  - component: {fileID: -5953202302469059492}
   m_Layer: 0
   m_Name: Coin Star
   m_TagString: Coin
@@ -232,3 +233,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.02, y: 0.02, z: 0.002}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-5953202302469059492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671308892161619638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c867b575080ed949aa263130e4f6ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 6234421050573697978, guid: ac31b87488fa4ca4094dda01c1a9255e,
+    type: 3}
