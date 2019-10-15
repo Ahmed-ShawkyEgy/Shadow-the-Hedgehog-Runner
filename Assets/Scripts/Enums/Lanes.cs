@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public enum Lanes
+﻿public enum Lanes
 {
     LeftLane,
     MiddleLane,

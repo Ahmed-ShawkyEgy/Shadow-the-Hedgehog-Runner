@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -44,17 +43,12 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_isGrounded)
-        {
-            //rb.velocity = (isInvinvible) ? _highSpeed : _normalSpeed;
-        }
-        else
+        if (!_isGrounded)
         {
             Vector3 velocity = rb.velocity;
             velocity.y -= _gravitationalModifier * Time.deltaTime;
             rb.velocity = velocity;
         }
-        //Debug.Log(rb.velocity);
     }
 
     private void Update()

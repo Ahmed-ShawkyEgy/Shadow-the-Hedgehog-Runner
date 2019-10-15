@@ -20,7 +20,4 @@ public abstract class Singleton<T> : MonoBehaviour where T : Component
             return instance;
         }
     }
-
-    public void Awake()
-    { }
 }

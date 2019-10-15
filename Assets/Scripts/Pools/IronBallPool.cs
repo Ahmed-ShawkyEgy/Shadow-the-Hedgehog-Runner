@@ -1,7 +1,2 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IronBallPool : ObjectPool<IronBall>
-{
-}
+﻿public class IronBallPool : ObjectPool<IronBall>
+{}

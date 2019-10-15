@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenueManager : Singleton<MainMenueManager>
@@ -12,7 +10,6 @@ public class MainMenueManager : Singleton<MainMenueManager>
     private GameObject turnSoundOff, turnSoundOn;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         DisplayMainMenue();

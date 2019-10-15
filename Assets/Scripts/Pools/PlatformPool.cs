@@ -1,7 +1,2 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlatformPool : ObjectPool<Platform>
-{
-}
+﻿public class PlatformPool : ObjectPool<Platform>
+{}
