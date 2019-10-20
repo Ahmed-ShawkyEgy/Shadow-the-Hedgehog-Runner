@@ -79,38 +79,53 @@ public class Player : MonoBehaviour
 
     private void handleControls()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             jump();
         }
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (targetLane == Lanes.MiddleLane)
-                targetLane = Lanes.LeftLane;
-            else if (targetLane == Lanes.RightLane)
-                targetLane = Lanes.MiddleLane;
+            MoveLeft();
         }
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (targetLane == Lanes.MiddleLane)
-                targetLane = Lanes.RightLane;
-            else if (targetLane == Lanes.LeftLane)
-                targetLane = Lanes.MiddleLane;
+            moveRight();
         }
         if(Input.GetKeyDown(KeyCode.C))
         {
-            _thirdPersonCamera.enabled = false;
-            _firstPersonCamera.enabled = false;
-            if (_activeCamera == 0)
-            {
-                _firstPersonCamera.enabled = true;
-            }
-            else
-            {
-                _thirdPersonCamera.enabled = true;
-            }
-            _activeCamera = 1 - _activeCamera;
+            SwitchCamera();
         }
+    }
+
+    public void SwitchCamera()
+    {
+        _thirdPersonCamera.enabled = false;
+        _firstPersonCamera.enabled = false;
+        if (_activeCamera == 0)
+        {
+            _firstPersonCamera.enabled = true;
+        }
+        else
+        {
+            _thirdPersonCamera.enabled = true;
+        }
+        _activeCamera = 1 - _activeCamera;
+    }
+
+    public void MoveLeft()
+    {
+        if (targetLane == Lanes.MiddleLane)
+            targetLane = Lanes.LeftLane;
+        else if (targetLane == Lanes.RightLane)
+            targetLane = Lanes.MiddleLane;
+    }
+
+    public void moveRight()
+    {
+        if (targetLane == Lanes.MiddleLane)
+            targetLane = Lanes.RightLane;
+        else if (targetLane == Lanes.LeftLane)
+            targetLane = Lanes.MiddleLane;
     }
 
     public void TriggerInvincible()
@@ -162,11 +177,14 @@ public class Player : MonoBehaviour
 
     public void jump()
     {
-        rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
-        rb.AddForce(Vector3.up * _jump, ForceMode.VelocityChange);
-        _isGrounded = false;
-        animator.SetTrigger("jump");
-        AudioManager.Instance.Play("Jump");
+        if (_isGrounded)
+        {
+            rb.constraints &= ~RigidbodyConstraints.FreezePositionY;
+            rb.AddForce(Vector3.up * _jump, ForceMode.VelocityChange);
+            _isGrounded = false;
+            animator.SetTrigger("jump");
+            AudioManager.Instance.Play("Jump");
+        }
     }
 
     public bool isInvincible()
